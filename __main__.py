@@ -18,3 +18,5 @@ if __name__ == '__main__':
 
     for t in chain.generate():
         print(t, end=' ')
+
+    print("")
