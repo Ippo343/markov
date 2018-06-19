@@ -30,14 +30,14 @@ class FreqTable:
         try:
 
             if not self._precomputed_freq:
-                self._precomputed_freq()
+                self._precompute_freq()
 
             tokens, weights = self._precomputed_freq
             choice = random.choice(tokens, p=weights)
 
             return choice
 
-        except:
+        except Exception as e:
             return None
 
 

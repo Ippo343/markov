@@ -8,12 +8,14 @@ import markov
 if __name__ == '__main__':
 
     with open('text') as f:
-        data = list(filter(None, map(str.strip, f.readlines())))
+        data = f.read()
 
-    sentences = list(itertools.chain(*(sent_tokenize(s) for s in data)))
-
+    sentences = sent_tokenize(data)
     chain = markov.Chain()
-    for s in sentences:
+
+    for i, s in enumerate(sentences):
+        if not i % 1000:
+            print(i)
         chain.feed(word_tokenize(s))
 
     for t in chain.generate():
