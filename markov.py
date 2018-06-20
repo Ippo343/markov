@@ -64,11 +64,14 @@ class Chain:
     def generate(self):
         self._reset_state()
 
-        while True:
-            token = self._tables[tuple(self._state)].choose()
+        def generator_helper():
+            while True:
+                token = self._tables[tuple(self._state)].choose()
 
-            if token is None:
-                return
+                if token is None:
+                    return
 
-            self._push_state(token)
-            yield token
+                self._push_state(token)
+                yield token
+
+        return " ".join(generator_helper())

@@ -11,14 +11,12 @@ if __name__ == '__main__':
         data = f.read()
 
     sentences = sent_tokenize(data)
-    chain = markov.Chain()
+    chain = markov.Chain(order=3)
 
     for i, s in enumerate(sentences):
         if not i % 1000:
             print(i)
         chain.feed(word_tokenize(s))
 
-    for t in chain.generate():
-        print(t, end=' ')
-
-    print("")
+    for i in range(10):
+        print(chain.generate())
